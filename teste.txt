@@ -1,0 +1,22 @@
+
+while(x>0)
+{
+	case 'A':
+	a++;
+	x = 0;
+	if ( a > b + c )
+		c--;
+		for( x = y; x < ++y ; c += 10 );
+		{
+			a+=b;
+			(A -B) > ee;	
+			switch(variavel)
+			{
+				case 'a':
+					a++;
+				case '&':
+					b--;
+					if( (a+b) = _ && (c == u) || c >= 9)
+			}
+		}
+	}
