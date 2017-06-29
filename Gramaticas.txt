@@ -1,0 +1,37 @@
+Gramática Original
+
+blocoComp -> <ACH>bloco<FCH>| bloco
+bloco -> cmdWhile | cmdIf | cmdDoWhile | cmdSwitch | atrib |  LAMBIDA
+cmdWhile -> <WHILE><AP>exp<FP>blocoComp
+num -> sinal<INTEGER> | sinal<REAL>
+sinal -> + | - | LAMBIDA
+exp -> exp<OP>exp | num | <IDENT> | <AP>exp<FP>
+cmdDoWhile -> <DO><ACH>bloco<FCH><WHILE><AP>exp<FP><PT-VIRG>
+atrib -> <IDENT><ATRIB>exp | <IDENT><OP_UN>
+cmdFor -> <FOR><AP>atrib<PT-VIRG>exp<PT-VIRG>atrib<FP>blocoComp
+cmdIf -> <IF><AP>exp<FP>blocoComp
+cmdSwitch -> <SWITCH><AP><IDENT><FP><ACH>listaCase<FCH>
+case -> <CASE>exp<DOIS-PT>bloco
+listaCase -> case listaCase | case
+
+--------------------------------------------------------------------
+
+Gramática “Preparada”
+
+blocoComp -> <ACH>bloco<FCH> | bloco
+bloco -> cmdWhile | cmdIf | cmdDoWhile | cmdSwitch | atrib | LAMBIDA
+cmdWhile -> <WHILE><AP>exp<FP>blocoComp
+num -> sinal R
+R -> <INTEGER> | <REAL>
+Sinal -> + | - | LAMBIDA
+Exp -> num R1 | <IDENT> R1 | <AP>exp<FP> R1
+R1 -> <OP>exp | LAMBIDA
+cmdDoWhile -> <DO><ACH>bloco<FCH><WHILE><AP>exp<FP><PT-VIRG>
+atrib -> <IDENT> R2
+R2 -> <ATRIB>exp | <OP_UN>
+cmdFor -> <FOR><AP>atrib<PT-VIRG>exp<PT-VIRG>atrib<FP>blocComp
+cmdIf -> <IF><AP>exp<FP>blocoComp
+cmdSwhitch -> <SWITCH><AP><IDENT><FP><ACH>listaCase<FCH>
+case -> <CASE>exp<DOIS-PT>bloco
+listaCase -> case R3
+R3 -> listaCase | LAMBIDA
