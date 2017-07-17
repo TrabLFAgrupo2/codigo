@@ -24,6 +24,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         else if(proxTokenIs(Token.SWITCH)){
             cmdSwitch();
         }
+        else if(proxTokenIs(Token.IF)){
+            cmdIf();
+        }
         else if(proxTokenIs(Token.IDENT)) {
             comandoAtribuicao();
             reconhece(Token.PT_VIRG);
@@ -131,6 +134,26 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         }
     }
     
+    public void cmdIf(){
+        if(proxTokenIs(Token.IF)){
+            leProxToken();
+            if(proxTokenIs(Token.AP)){
+                leProxToken();
+                exp();
+                if(proxTokenIs(Token.FP)){
+                    leProxToken();
+                }
+                else{
+                    Token[] tokensEsperados = {Token.FP};
+                    throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                }
+            }    
+            else{
+                Token[] tokensEsperados = {Token.AP};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+            }   
+        }
+    }
     public void cmdSwitch(){
         if(proxTokenIs(Token.SWITCH)){
             leProxToken();
