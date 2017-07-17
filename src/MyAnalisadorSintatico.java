@@ -224,4 +224,39 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         if(proxTokenIs(Token.CASE))
             listaCase();
     }
+        
+    public void cmdFor(){
+        if(proxTokenIs(Token.FOR)){
+             leProxToken();
+            if(proxTokenIs(Token.AP)){
+                leProxToken();
+                atrib();
+                if(proxTokenIs(Token.PT_VIRG)){
+                    leProxToken();
+                    exp();
+                    if(proxTokenIs(Token.PT_VIRG)){
+                        leProxToken();
+                        atrib();
+                        if(proxTokenIs(Token.FP)){
+                            leProxToken();
+                        }
+                    }
+                }
+                
+        }
+    }
+}
+    public void R2(){
+         if(proxTokenIs(Token.IDENT)){
+            leProxToken();
+            exp();
+        }
+        
+    }
+    public void atrib(){
+        if(proxTokenIs(Token.IDENT)){
+            leProxToken();
+            R2();
+        }
+    }
 }
