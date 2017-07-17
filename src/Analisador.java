@@ -1,7 +1,3 @@
-/**
- *
- * @author gabriel camata
- */
 public abstract class Analisador implements Constantes {
     protected String nomeArquivoEntrada;
     public Analisador(String _nomeArquivoEntrada) {

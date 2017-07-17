@@ -24,7 +24,7 @@ public class AnalisadorLexico extends Analisador {
             throw new RuntimeException("Erro de leitura no arquivo "+_nomeArquivoEntrada);
         }
     }
-	
+    
 	// lê o próximo caractere do buffer. Se fim, retorna EOF
 	// avança o ponteiro de leitura 1 posição
     public void leProxCaractere() {

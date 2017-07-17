@@ -1,7 +1,3 @@
-/**
- *
- * @author gabriel camata//moura
- */
 public class ErroLexico extends RuntimeException {
     private char caractereEncontrado;
     private String caracteresEsperados;
@@ -14,9 +10,9 @@ public class ErroLexico extends RuntimeException {
     ErroLexico(String flag, String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     public String toString() {
 	return "caractere encontrado: "+((char)this.caractereEncontrado)+
 	       "\nera(m) esperado(s): "+this.caracteresEsperados;
     }
-
 }
