@@ -42,7 +42,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     public void exp() {
         if(proxTokenIs(Token.NUM)){ 
             leProxToken();
-            if(proxTokenIs(Token.OP)){
+            //if(proxTokenIs(Token.OP))
+                R1();
+            /*if(proxTokenIs(Token.OP)){
                 leProxToken();
                 if(proxTokenIs(Token.NUM)||proxTokenIs(Token.IDENT))
                     exp();
@@ -50,18 +52,29 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                     Token[] tokensEsperados = {Token.NUM,Token.IDENT};
                     throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
                 }    
-            }
+            }*/
             if(proxTokenIs(Token.PT_VIRG));
-            else{
-                if(!proxTokenIs(Token.OP)){
+            /*else{
+                //if(!proxTokenIs(Token.OP)){
                     Token[] tokensEsperados = {Token.OP};
                     throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                //}
+            }*/
+        }
+        else if(proxTokenIs(Token.AP)){
+                leProxToken();
+                exp();
+                if(proxTokenIs(Token.FP)){
+                    leProxToken();
+                   // if(proxTokenIs(Token.OP))
+                        R1();
                 }
             }
-        }    
         else if(proxTokenIs(Token.IDENT)){ 
         	leProxToken();
-                if(proxTokenIs(Token.OP)){
+                //if(proxTokenIs(Token.OP))
+                    R1();
+                /*if(proxTokenIs(Token.OP)){
                     leProxToken();
                     if(proxTokenIs(Token.NUM)||proxTokenIs(Token.IDENT))
                         exp();
@@ -69,21 +82,32 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                         Token[] tokensEsperados = {Token.NUM,Token.IDENT};
                         throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
                     }
-                }
+                }*/
                 if(proxTokenIs(Token.PT_VIRG));
-                else{
-                    if(!proxTokenIs(Token.OP)){
+                /*else{
+                    //if(!proxTokenIs(Token.OP)){
                         Token[] tokensEsperados = {Token.OP};
                         throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-                    }
-                }
+                    //}
+                }*/
             }    
             else {
 		Token[] tokensEsperados = {Token.NUM,Token.IDENT};
 		throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
             }
     }
-    public void cmdWhile(){
+    public void R1(){
+        if(proxTokenIs(Token.OP)){
+            leProxToken();
+            if(proxTokenIs(Token.NUM)||proxTokenIs(Token.IDENT)||proxTokenIs(Token.AP))
+                exp();
+            else{
+                Token[] tokensEsperados = {Token.NUM,Token.IDENT};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+            }    
+        }
+    }
+        public void cmdWhile(){
         if(proxTokenIs(Token.WHILE)){
             leProxToken();
             if(proxTokenIs(Token.AP)){
