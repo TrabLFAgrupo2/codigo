@@ -21,6 +21,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         if(proxTokenIs(Token.WHILE)){
             cmdWhile();
         }
+        else if(proxTokenIs(Token.SWITCH)){
+            cmdSwitch();
+        }
         else if(proxTokenIs(Token.IDENT)) {
             comandoAtribuicao();
             reconhece(Token.PT_VIRG);
@@ -128,9 +131,74 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         }
     }
     
-    public void cmdSwhitch(){
+    public void cmdSwitch(){
         if(proxTokenIs(Token.SWITCH)){
-        
+            leProxToken();
+            if(proxTokenIs(Token.AP)){
+                leProxToken();
+                if(proxTokenIs(Token.IDENT)){
+                    leProxToken();
+                    if(proxTokenIs(Token.FP)){
+                        leProxToken();
+                        if(proxTokenIs(Token.ACH)){
+                            leProxToken();
+                            listaCase();
+                            if(proxTokenIs(Token.FCH))
+                                leProxToken();
+                            else{
+                                Token[] tokensEsperados = {Token.FCH};
+                                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                            }
+                        }
+                        else{
+                            Token[] tokensEsperados = {Token.ACH};
+                            throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);          
+                        }  
+                    }
+                    else{
+                        Token[] tokensEsperados = {Token.FP};
+                        throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                    }
+                }
+                else{
+                    Token[] tokensEsperados = {Token.IDENT};
+                    throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                }
+            }
+            else{
+                Token[] tokensEsperados = {Token.AP};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+            }
         }
+        else{
+            Token[] tokensEsperados = {Token.SWITCH};
+            throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+        }
+    }
+    public void listaCase(){
+        Case();
+        R3();
+    }
+    public void Case(){
+        if(proxTokenIs(Token.CASE)){
+            leProxToken();
+            exp();
+            if(proxTokenIs(Token.DOISPONTOS)){
+                leProxToken();
+                
+            }
+            else{
+                Token[] tokensEsperados = {Token.DOISPONTOS};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+            }
+        }
+        else{
+            Token[] tokensEsperados = {Token.CASE};
+            throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+        }
+    }
+    public void R3(){
+        if(proxTokenIs(Token.CASE))
+            listaCase();
     }
 }
