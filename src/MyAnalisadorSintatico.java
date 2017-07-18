@@ -198,13 +198,24 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     public void Case(){
         if(proxTokenIs(Token.CASE)){
             leProxToken();
-            exp();
-            if(proxTokenIs(Token.DOISPONTOS)){
+            if(proxTokenIs(Token.ASPAS)){
                 leProxToken();
-                
-            }
-            else{
+                exp();
+                if(proxTokenIs(Token.ASPAS)){
+                    leProxToken();
+                    if(proxTokenIs(Token.DOISPONTOS))
+                        leProxToken();
+                }
+            }else if(proxTokenIs(Token.IDENT)){
+                exp();
+                if(proxTokenIs(Token.DOISPONTOS))
+                leProxToken();
+                else{
                 Token[] tokensEsperados = {Token.DOISPONTOS};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                }
+            }else{
+                Token[] tokensEsperados = {Token.IDENT};
                 throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
             }
         }
@@ -223,19 +234,27 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
             if (proxTokenIs(Token.AP)){
                 leProxToken();
-                atrib();
-                if(proxTokenIs(Token.PT_VIRG)){
+                if(proxTokenIs(Token.FP))
                     leProxToken();
-                    exp();
+                else{
+                    atrib();
                     if(proxTokenIs(Token.PT_VIRG)){
                         leProxToken();
-                        atrib();
-                        if(proxTokenIs(Token.FP)){
+                        exp();
+                        if(proxTokenIs(Token.PT_VIRG)){
                             leProxToken();
+                            atrib();
+                            if(proxTokenIs(Token.FP)){
+                                leProxToken();
+                            }
+                            else{
+                                Token[] tokensEsperados = {Token.FP};
+                                 throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                            }
                         }
                         else{
-                            Token[] tokensEsperados = {Token.FP};
-                             throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                            Token[] tokensEsperados = {Token.PT_VIRG};
+                            throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
                         }
                     }
                     else{
@@ -243,12 +262,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                         throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
                     }
                 }
-                else{
-                    Token[] tokensEsperados = {Token.PT_VIRG};
-                    throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-                }
-            }
-            else{
+                }else{
                 Token[] tokensEsperados = {Token.AP};
                 throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
             }

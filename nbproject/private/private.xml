@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/gabriel/Área%20de%20Trabalho/lfa/analisadorLexico/src/ErroLexico.java</file>
-            <file>file:/home/gabriel/Área%20de%20Trabalho/lfa/analisadorLexico/src/Constantes.java</file>
-            <file>file:/home/gabriel/Área%20de%20Trabalho/lfa/analisadorLexico/src/MyAnalisadorLexico.java</file>
+            <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/AppInterfaceGrafica.java</file>
+            <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/MyAnalisadorSintatico.java</file>
+            <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/Constantes.java</file>
+            <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/ErroSintatico.java</file>
         </group>
     </open-files>
 </project-private>
