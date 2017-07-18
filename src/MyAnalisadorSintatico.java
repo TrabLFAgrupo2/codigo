@@ -135,6 +135,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 exp();
                 if(proxTokenIs(Token.FP)){
                     leProxToken();
+                    bloco();
                 }
                 else{
                     Token[] tokensEsperados = {Token.FP};
@@ -249,6 +250,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                             atrib();
                             if(proxTokenIs(Token.FP)){
                                 leProxToken();
+                                bloco();
                             }
                             else{
                                 Token[] tokensEsperados = {Token.FP};
@@ -289,32 +291,36 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     public void bloco(){
         if(proxTokenIs(Token.ACH)){
             leProxToken();
-            if(proxTokenIs(Token.FOR)){
-                cmdFor();
-               // leProxToken();
+            while(!proxTokenIs(Token.FCH)){
+                if(proxTokenIs(Token.FOR)){
+                    cmdFor();
+                   // leProxToken();
+                }
+                if(proxTokenIs(Token.SWITCH)){
+                    cmdSwitch();
+                   //leProxToken();
+                }
+                if(proxTokenIs(Token.IF)){
+                    cmdIf();
+                    //leProxToken();
+                }
+                if(proxTokenIs(Token.WHILE)){
+                    cmdWhile();
+                    //leProxToken();
+                }
+                if(proxTokenIs(Token.DO)){
+                    //cmdDo();
+                    //leProxToken();
+                }if(proxTokenIs(Token.IDENT)){
+                    exp();
+                    //leProxToken();            
+                }if(proxTokenIs(Token.FCH))
+                    leProxToken();
+                if(proxTokenIs(Token.EOF))
+                    break;
             }
-            if(proxTokenIs(Token.SWITCH)){
-                cmdSwitch();
-               //leProxToken();
-            }
-            if(proxTokenIs(Token.IF)){
-                cmdIf();
-                //leProxToken();
-            }
-            if(proxTokenIs(Token.WHILE)){
-                cmdWhile();
-                //leProxToken();
-            }
-            if(proxTokenIs(Token.DO)){
-                //cmdDo();
-                //leProxToken();
-            }if(proxTokenIs(Token.IDENT)){
-                exp();
-                //leProxToken();            
-            }if(proxTokenIs(Token.FCH))
-                leProxToken();
         }else if(proxTokenIs(Token.FOR))
-                cmdFor();
+             cmdFor();
         else if(proxTokenIs(Token.SWITCH))
             cmdSwitch();
         else if(proxTokenIs(Token.IF))
@@ -325,6 +331,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             //cmdDo();
         }else if(proxTokenIs(Token.IDENT))
             exp();
+        else if(proxTokenIs(Token.FCH))
+            leProxToken();
         //else if(proxTokenIs(Token.PT_VIRG))
           //  leProxToken();
      }

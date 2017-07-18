@@ -1,9 +1,4 @@
-switch(ae){
-case tt:
+for(a=b;a<b;a=b)
 {
-while(4)
-if(4<5)
-while(4<5)
-
-}
+a=b
 }

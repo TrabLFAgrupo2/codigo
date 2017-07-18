@@ -4,7 +4,7 @@ public interface Constantes {
  
 	String 	DIGITOS	= "0123456789",
 		LETRAS	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_",
-		ATRIB  	= " = += -= ",
+		ATRIB  	= " = += -= *= /=",
 		VAZIOS	= " \r\n\t",
                 WHILE   = "w",
                 OP = "+-*/%&&||<>!=",
