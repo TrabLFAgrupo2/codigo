@@ -168,7 +168,7 @@ public class AppInterfaceGrafica extends javax.swing.JFrame {
     BufferedWriter bw;
     FileReader fr;
     FileWriter fw;
-    String caminho = "C:\\Users\\MEGAZERO\\Desktop\\ttteste\\comando.txt" ;
+    String caminho = "C:\\Users\\rafin\\OneDrive\\Documentos\\GitHub\\codigo170717\\comando.txt" ;
 public void salvar (){
     arquivo = new File (caminho) ;
     try{

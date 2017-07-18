@@ -11,6 +11,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         if(proxTokenIs(Token.WHILE)){
             cmdWhile();
         }
+        if(proxTokenIs(Token.FOR)){
+            cmdFor();
+        }
         else if(proxTokenIs(Token.SWITCH)){
             cmdSwitch();
         }
@@ -217,8 +220,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         
     public void cmdFor(){
         if(proxTokenIs(Token.FOR)){
-             leProxToken();
-            if(proxTokenIs(Token.AP)){
+            leProxToken();
+            if (proxTokenIs(Token.AP)){
                 leProxToken();
                 atrib();
                 if(proxTokenIs(Token.PT_VIRG)){
@@ -230,23 +233,40 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                         if(proxTokenIs(Token.FP)){
                             leProxToken();
                         }
+                        else{
+                            Token[] tokensEsperados = {Token.FP};
+                             throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                        }
+                    }
+                    else{
+                        Token[] tokensEsperados = {Token.PT_VIRG};
+                        throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
                     }
                 }
-                
+                else{
+                    Token[] tokensEsperados = {Token.PT_VIRG};
+                    throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+                }
+            }
+            else{
+                Token[] tokensEsperados = {Token.AP};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
+            }
         }
-    }
-}
-    public void R2(){
-         if(proxTokenIs(Token.IDENT)){
-            leProxToken();
-            exp();
-        }
-        
     }
     public void atrib(){
         if(proxTokenIs(Token.IDENT)){
             leProxToken();
             R2();
+        }
+    }    
+    public void R2(){
+        if(proxTokenIs(Token.ATRIB)){
+            leProxToken();
+            exp();
+        }
+        else if(proxTokenIs(Token.OP_UNARIOS)){
+            leProxToken();
         }
     }
 }
