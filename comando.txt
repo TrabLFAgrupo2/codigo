@@ -1,4 +1,5 @@
 for(a=b;a<b;a=b)
 {
-a=b
+a+b
+for()
 }
