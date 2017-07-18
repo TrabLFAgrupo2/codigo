@@ -265,7 +265,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
             exp();
         }
-        else if(proxTokenIs(Token.OP_UNARIOS)){
+        if(proxTokenIs(Token.OP)){
             leProxToken();
         }
     }
