@@ -313,7 +313,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                     //leProxToken();
                 }if(proxTokenIs(Token.IDENT)){
                     exp();
-                    leProxToken();            
+                    //leProxToken();            
                 }if(proxTokenIs(Token.FCH))
                     leProxToken();
                 if(proxTokenIs(Token.EOF))
