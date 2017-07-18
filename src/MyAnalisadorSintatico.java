@@ -294,19 +294,19 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             while(!proxTokenIs(Token.FCH)){
                 if(proxTokenIs(Token.FOR)){
                     cmdFor();
-                   // leProxToken();
+                    leProxToken();
                 }
                 if(proxTokenIs(Token.SWITCH)){
                     cmdSwitch();
-                   //leProxToken();
+                   leProxToken();
                 }
                 if(proxTokenIs(Token.IF)){
                     cmdIf();
-                    //leProxToken();
+                    leProxToken();
                 }
                 if(proxTokenIs(Token.WHILE)){
                     cmdWhile();
-                    //leProxToken();
+                    leProxToken();
                 }
                 if(proxTokenIs(Token.DO)){
                     //cmdDo();
@@ -314,9 +314,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 }if(proxTokenIs(Token.IDENT)){
                     exp();
                     //leProxToken();            
-                }if(proxTokenIs(Token.FCH))
+                }if(proxTokenIs(Token.FCH)){
                     leProxToken();
-                if(proxTokenIs(Token.EOF))
+                }else if(proxTokenIs(Token.EOF))
                     break;
             }
         }else if(proxTokenIs(Token.FOR))
