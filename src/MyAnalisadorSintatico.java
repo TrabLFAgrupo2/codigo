@@ -1,12 +1,29 @@
+
+/**
+ *
+ * @author gabriel
+ */
 public class MyAnalisadorSintatico extends AnalisadorSintatico {
 	
+    /**
+     *
+     * @param _nomeArquivoEntrada
+     */
     public MyAnalisadorSintatico(String _nomeArquivoEntrada) {
 	super(_nomeArquivoEntrada);
     }
+
+    /**
+     *
+     */
     public void inicio() {
 	corpo(); 
 	reconhece(Token.EOF);
     }
+
+    /**
+     *
+     */
     public void corpo() {
         if(proxTokenIs(Token.WHILE)){
             cmdWhile();
@@ -33,11 +50,19 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
 		throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
             }
 	}
+
+    /**
+     *
+     */
     public void comandoAtribuicao() {
         reconhece(Token.IDENT);
         reconhece(Token.ATRIB);
         exp();
     }
+
+    /**
+     *
+     */
     public void exp() {
         if(proxTokenIs(Token.NUM)){ 
             leProxToken();
@@ -95,6 +120,10 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
 		throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
             }
     }
+
+    /**
+     *
+     */
     public void R1(){
         if(proxTokenIs(Token.OP)){
             leProxToken();
@@ -106,7 +135,11 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             }    
         }
     }
-        public void cmdWhile(){
+
+    /**
+     *
+     */
+    public void cmdWhile(){
         if(proxTokenIs(Token.WHILE)){
             leProxToken();
             if(proxTokenIs(Token.AP)){
@@ -127,6 +160,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         }
     }
     
+    /**
+     *
+     */
     public void cmdIf(){
         if(proxTokenIs(Token.IF)){
             leProxToken();
@@ -148,6 +184,10 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             }   
         }
     }
+
+    /**
+     *
+     */
     public void cmdSwitch(){
         if(proxTokenIs(Token.SWITCH)){
             leProxToken();
@@ -192,10 +232,18 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
         }
     }
+
+    /**
+     *
+     */
     public void listaCase(){
         Case();
         R3();
     }
+
+    /**
+     *
+     */
     public void Case(){
         if(proxTokenIs(Token.CASE)){
             leProxToken();
@@ -228,11 +276,18 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
         }
     }
+
+    /**
+     *
+     */
     public void R3(){
         if(proxTokenIs(Token.CASE))
             listaCase();
     }
         
+    /**
+     *
+     */
     public void cmdFor(){
         if(proxTokenIs(Token.FOR)){
             leProxToken();
@@ -273,12 +328,20 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             }
         }
     }
+
+    /**
+     *
+     */
     public void atrib(){
         if(proxTokenIs(Token.IDENT)){
             leProxToken();
             R2();
         }
     }    
+
+    /**
+     *
+     */
     public void R2(){
         if(proxTokenIs(Token.ATRIB)){
             leProxToken();
@@ -288,6 +351,10 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
         }
     }
+
+    /**
+     *
+     */
     public void bloco(){
         if(proxTokenIs(Token.ACH)){
             leProxToken();
