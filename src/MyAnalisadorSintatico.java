@@ -203,14 +203,17 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 exp();
                 if(proxTokenIs(Token.ASPAS)){
                     leProxToken();
-                    if(proxTokenIs(Token.DOISPONTOS))
+                    if(proxTokenIs(Token.DOISPONTOS)){
                         leProxToken();
+                        bloco();
+                    }
                 }
             }else if(proxTokenIs(Token.IDENT)){
                 exp();
-                if(proxTokenIs(Token.DOISPONTOS))
+                if(proxTokenIs(Token.DOISPONTOS)){
                 leProxToken();
-                else{
+                bloco();
+                }else{
                 Token[] tokensEsperados = {Token.DOISPONTOS};
                 throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
                 }
@@ -283,4 +286,47 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
         }
     }
+    public void bloco(){
+        if(proxTokenIs(Token.ACH)){
+            leProxToken();
+            if(proxTokenIs(Token.FOR)){
+                cmdFor();
+               // leProxToken();
+            }
+            if(proxTokenIs(Token.SWITCH)){
+                cmdSwitch();
+               //leProxToken();
+            }
+            if(proxTokenIs(Token.IF)){
+                cmdIf();
+                //leProxToken();
+            }
+            if(proxTokenIs(Token.WHILE)){
+                cmdWhile();
+                //leProxToken();
+            }
+            if(proxTokenIs(Token.DO)){
+                //cmdDo();
+                //leProxToken();
+            }if(proxTokenIs(Token.IDENT)){
+                exp();
+                //leProxToken();            
+            }if(proxTokenIs(Token.FCH))
+                leProxToken();
+        }else if(proxTokenIs(Token.FOR))
+                cmdFor();
+        else if(proxTokenIs(Token.SWITCH))
+            cmdSwitch();
+        else if(proxTokenIs(Token.IF))
+            cmdIf();
+        else if(proxTokenIs(Token.WHILE))
+            cmdWhile();
+        else if(proxTokenIs(Token.DO)){
+            //cmdDo();
+        }else if(proxTokenIs(Token.IDENT))
+            exp();
+        //else if(proxTokenIs(Token.PT_VIRG))
+          //  leProxToken();
+     }
+    
 }

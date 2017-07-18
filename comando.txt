@@ -1,4 +1,9 @@
-switch(ca) {
-case l:
+switch(ae){
+case tt:
+{
+while(4)
+if(4<5)
+while(4<5)
 
+}
 }
