@@ -107,14 +107,19 @@ public class AppInterfaceGrafica extends javax.swing.JFrame {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        String diretorio;
-        JFileChooser chooserDiretorio = new JFileChooser();
-        chooserDiretorio.setFileSelectionMode(JFileChooser.FILES_ONLY); 
-        chooserDiretorio.showOpenDialog(getParent());
-        diretorio = chooserDiretorio.getSelectedFile().getAbsolutePath();
-        //JOptionPane.showMessageDialog(null, diretorio);
-        executar(diretorio);
-        //abrir(diretorio);
+        try{
+            String diretorio;
+            JFileChooser chooserDiretorio = new JFileChooser();
+            chooserDiretorio.setFileSelectionMode(JFileChooser.FILES_ONLY); 
+            chooserDiretorio.showOpenDialog(getParent());
+            diretorio = chooserDiretorio.getSelectedFile().getAbsolutePath();
+            //JOptionPane.showMessageDialog(null, diretorio);
+            executar(diretorio);
+            //abrir(diretorio);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Nenhum arquivo selecionado");
+        }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     /**
@@ -169,8 +174,10 @@ public class AppInterfaceGrafica extends javax.swing.JFrame {
     FileReader fr;
     FileWriter fw;
     String caminho = "comando.txt" ;
+    
 public void salvar (){
     arquivo = new File (caminho) ;
+    String newLine = System.getProperty("line.separator");
     try{
         if(!arquivo.exists()){
             arquivo.createNewFile();
@@ -179,7 +186,7 @@ public void salvar (){
         bw = new BufferedWriter (fw);
         //String conteudo = txtarea.getText().replaceAll("\n",null);
         //bw.write(txtarea.getText().replaceAll("\n",null));
-        bw.write(txtarea.getText());
+        bw.write(txtarea.getText() + newLine);
         bw.close();
         fw.close();
         

@@ -3,10 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <file>file:/C:/Users/gabriel%20camata/Documents/GitHub/codigo/src/MyAnalisadorLexico.java</file>
+            <file>file:/C:/Users/gabriel%20camata/Documents/GitHub/codigo/src/MyAnalisadorSintatico.java</file>
+            <file>file:/C:/Users/gabriel%20camata/Documents/GitHub/codigo/src/Interface.java</file>
+            <file>file:/C:/Users/gabriel%20camata/Documents/GitHub/codigo/src/Constantes.java</file>
+            <file>file:/C:/Users/gabriel%20camata/Documents/GitHub/codigo/src/AppInterfaceGrafica.java</file>
+=======
+=======
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
             <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/AppInterfaceGrafica.java</file>
             <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/MyAnalisadorSintatico.java</file>
             <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/Constantes.java</file>
             <file>file:/home/gabriel/Área%20de%20Trabalho/git-repos/codigo/src/ErroSintatico.java</file>
+<<<<<<< HEAD
+>>>>>>> 3c03bb3e3a8cf8458ad796fddf1ba479c57c2673
+=======
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
         </group>
     </open-files>
 </project-private>

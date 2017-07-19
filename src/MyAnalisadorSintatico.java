@@ -17,7 +17,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
      *
      */
     public void inicio() {
-	corpo(); 
+	blocoComp();
 	reconhece(Token.EOF);
     }
 
@@ -43,12 +43,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             corpo();
 	}
         
-	else if(proxTokenIs(Token.EOF))
-		;
-            else {
-		Token[] tokensEsperados = {Token.IDENT,Token.EOF};
-		throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-            }
+	else if(proxTokenIs(Token.EOF));
 	}
 
     /**
@@ -56,8 +51,13 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
      */
     public void comandoAtribuicao() {
         reconhece(Token.IDENT);
-        reconhece(Token.ATRIB);
-        exp();
+        if(proxTokenIs(Token.ATRIB)){
+            reconhece(Token.ATRIB);
+            exp();
+        }
+        if(proxTokenIs(Token.OP_UNARIOS)){
+            leProxToken();
+        }
     }
 
     /**
@@ -66,54 +66,21 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     public void exp() {
         if(proxTokenIs(Token.NUM)){ 
             leProxToken();
-            //if(proxTokenIs(Token.OP))
                 R1();
-            /*if(proxTokenIs(Token.OP)){
-                leProxToken();
-                if(proxTokenIs(Token.NUM)||proxTokenIs(Token.IDENT))
-                    exp();
-                else{
-                    Token[] tokensEsperados = {Token.NUM,Token.IDENT};
-                    throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-                }    
-            }*/
             if(proxTokenIs(Token.PT_VIRG));
-            /*else{
-                //if(!proxTokenIs(Token.OP)){
-                    Token[] tokensEsperados = {Token.OP};
-                    throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-                //}
-            }*/
         }
         else if(proxTokenIs(Token.AP)){
                 leProxToken();
                 exp();
                 if(proxTokenIs(Token.FP)){
                     leProxToken();
-                   // if(proxTokenIs(Token.OP))
-                        R1();
+                    R1();
                 }
             }
         else if(proxTokenIs(Token.IDENT)){ 
         	leProxToken();
-                //if(proxTokenIs(Token.OP))
-                    R1();
-                /*if(proxTokenIs(Token.OP)){
-                    leProxToken();
-                    if(proxTokenIs(Token.NUM)||proxTokenIs(Token.IDENT))
-                        exp();
-                    else{
-                        Token[] tokensEsperados = {Token.NUM,Token.IDENT};
-                        throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-                    }
-                }*/
+                R1();
                 if(proxTokenIs(Token.PT_VIRG));
-                /*else{
-                    //if(!proxTokenIs(Token.OP)){
-                        Token[] tokensEsperados = {Token.OP};
-                        throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
-                    //}
-                }*/
             }    
             else {
 		Token[] tokensEsperados = {Token.NUM,Token.IDENT};
@@ -147,6 +114,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 exp();
                 if(proxTokenIs(Token.FP)){
                     leProxToken();
+                    blocoComp();
                 }
                 else{
                     Token[] tokensEsperados = {Token.FP};
@@ -171,7 +139,11 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 exp();
                 if(proxTokenIs(Token.FP)){
                     leProxToken();
+<<<<<<< HEAD
+                    blocoComp();
+=======
                     bloco();
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                 }
                 else{
                     Token[] tokensEsperados = {Token.FP};
@@ -254,14 +226,22 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                     leProxToken();
                     if(proxTokenIs(Token.DOISPONTOS)){
                         leProxToken();
+<<<<<<< HEAD
+                        blocoComp();
+=======
                         bloco();
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                     }
                 }
             }else if(proxTokenIs(Token.IDENT)){
                 exp();
                 if(proxTokenIs(Token.DOISPONTOS)){
                 leProxToken();
+<<<<<<< HEAD
+                blocoComp();
+=======
                 bloco();
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                 }else{
                 Token[] tokensEsperados = {Token.DOISPONTOS};
                 throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
@@ -305,7 +285,11 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                             atrib();
                             if(proxTokenIs(Token.FP)){
                                 leProxToken();
+<<<<<<< HEAD
+                                blocoComp();
+=======
                                 bloco();
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                             }
                             else{
                                 Token[] tokensEsperados = {Token.FP};
@@ -347,20 +331,60 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
             exp();
         }
-        if(proxTokenIs(Token.OP)){
+        if(proxTokenIs(Token.OP_UNARIOS)){
             leProxToken();
         }
     }
+<<<<<<< HEAD
+    
+    public void blocoComp(){
+        if(proxTokenIs(Token.ACH)){
+            leProxToken();
+            bloco();
+            if(proxTokenIs(Token.FCH)){
+                leProxToken();
+                blocoComp();
+            }
+            else{
+                Token[] tokensEsperados = {Token.FCH};
+                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
+            }    
+        }
+        else
+            bloco();
+        
+    }
+    public void bloco(){
+        corpo();
+    }
+   /* public void bloco(){
+=======
 
     /**
      *
      */
     public void bloco(){
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
         if(proxTokenIs(Token.ACH)){
             leProxToken();
             while(!proxTokenIs(Token.FCH)){
                 if(proxTokenIs(Token.FOR)){
                     cmdFor();
+<<<<<<< HEAD
+                   // leProxToken();
+                }
+                if(proxTokenIs(Token.SWITCH)){
+                    cmdSwitch();
+                   //leProxToken();
+                }
+                if(proxTokenIs(Token.IF)){
+                    cmdIf();
+                    //leProxToken();
+                }
+                if(proxTokenIs(Token.WHILE)){
+                    cmdWhile();
+                    //leProxToken();
+=======
                     leProxToken();
                 }
                 if(proxTokenIs(Token.SWITCH)){
@@ -374,6 +398,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 if(proxTokenIs(Token.WHILE)){
                     cmdWhile();
                     leProxToken();
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                 }
                 if(proxTokenIs(Token.DO)){
                     //cmdDo();
@@ -381,9 +406,15 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 }if(proxTokenIs(Token.IDENT)){
                     exp();
                     //leProxToken();            
+<<<<<<< HEAD
+                }if(proxTokenIs(Token.FCH))
+                    leProxToken();
+                if(proxTokenIs(Token.EOF))
+=======
                 }if(proxTokenIs(Token.FCH)){
                     leProxToken();
                 }else if(proxTokenIs(Token.EOF))
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                     break;
             }
         }else if(proxTokenIs(Token.FOR))
@@ -402,6 +433,10 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
          //   leProxToken();
         //else if(proxTokenIs(Token.PT_VIRG))
           //  leProxToken();
+<<<<<<< HEAD
+     }*/
+=======
      }
+>>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
     
 }

@@ -19,11 +19,12 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 int i = 0;
                 boolean flag = false;
                 Vector aux = new Vector();
+                aux.add("w");
                 aux.add("h");
                 aux.add("i");
                 aux.add("l");
                 aux.add("e");
-                leProxCaractere();
+                //leProxCaractere();
                 s3(i,flag,aux);
         
         }
@@ -82,31 +83,34 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 int i = 0;
                 boolean flag = false;
                 Vector aux = new Vector();
+                aux.add("f");
                 aux.add("o");
                 aux.add("r");
-                leProxCaractere();
+                //leProxCaractere();
                 s13(i,flag,aux);
         }
         else if(this.proxCaractereIs(CASE)){
                 int i = 0;
                 boolean flag = false;
                 Vector aux = new Vector();
+                aux.add("c");
                 aux.add("a");
                 aux.add("s");
                 aux.add("e");
-                leProxCaractere();
+                //leProxCaractere();
                 s14(i,flag,aux);        
         }
         else if(this.proxCaractereIs(SWITCH)){
                 int i = 0;
                 boolean flag = false;
                 Vector aux = new Vector();//vetor com o resto da palavra
+                aux.add("s");
                 aux.add("w");
                 aux.add("i");
                 aux.add("t");
                 aux.add("c");
                 aux.add("h");
-                leProxCaractere();
+                //leProxCaractere();
                 s15(i,flag,aux);        
         }
         
@@ -114,8 +118,9 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 int i = 0;
                 boolean flag = false;
                 Vector aux = new Vector();
+                aux.add("i");
                 aux.add("f");
-                leProxCaractere();
+                //leProxCaractere();
                 s16(i,flag,aux);
         }
         
@@ -123,8 +128,9 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 int i = 0;
                 boolean flag = false;
                 Vector aux = new Vector();
+                aux.add("d");
                 aux.add("o");
-                leProxCaractere();
+                //leProxCaractere();
                 s17(i,flag,aux);
         }
         
@@ -162,7 +168,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
         this.tokenReconhecido = Token.ATRIB;
     }
     public void s3(int i,boolean flag,Vector aux){
-        if(i < 4 ) flag = this.proxCaractereIs((String)aux.get(i));
+        if(i < 5 ) flag = this.proxCaractereIs((String)aux.get(i));
         leProxCaractere();
         i++;  
         if(!flag) s4();
@@ -170,7 +176,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             s3(i,flag,aux);
         }
         else{
-            if(i == 4 && flag)
+            if(i == 5 && flag)
                 this.tokenReconhecido = Token.WHILE;
             else
                 s4();
@@ -184,7 +190,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
         }
     }
     public void s5(String flag){
-        this.tokenReconhecido = Token.OP;
+        
         /*if(this.proxCaractereIs("=")){
             leProxCaractere();
             s5(flag);
@@ -196,45 +202,49 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             leProxCaractere();
             this.tokenReconhecido = Token.SINAL;
         }*/
-        if(this.proxCaractereIs("-") && flag=="-"){
+        else if(this.proxCaractereIs("-") && flag=="-"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP_UNARIOS;
         }
-         if(this.proxCaractereIs("=") && flag=="-"){
+        else if(this.proxCaractereIs("=") && flag=="-"){
             leProxCaractere();
             s2();
         }
-          if(this.proxCaractereIs("=") && flag=="+"){
+        else if(this.proxCaractereIs("=") && flag=="+"){
             leProxCaractere();
             s2();
         }
-          if(this.proxCaractereIs("=") && flag=="<"){
+        else  if(this.proxCaractereIs("=") && flag=="<"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP;
         }
-          if(this.proxCaractereIs("=") && flag==">"){
+        else  if(this.proxCaractereIs("=") && flag==">"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP;
         }
-          if(this.proxCaractereIs("=") && flag=="!"){
+        else if(this.proxCaractereIs("=") && flag=="!"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP;
         } 
-          if(this.proxCaractereIs("=") && flag=="="){
+        else  if(this.proxCaractereIs("=") && flag=="="){
             leProxCaractere();
             this.tokenReconhecido = Token.OP;
-          }else if(flag=="=") 
+        }
+        else if(flag=="=") 
               s2();
-        if(this.proxCaractereIs("&") && flag=="&"){
+        else if(this.proxCaractereIs("&") && flag=="&"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP;
-         }else if(flag=="&")
+        }
+        else if(flag=="&")
              this.tokenReconhecido = Token.OP_UNARIOS;
-          if(this.proxCaractereIs("|") && flag=="|"){
+        else if(this.proxCaractereIs("|") && flag=="|"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP;
-          }else if (flag=="|")
+        }else if (flag=="|")
                 this.tokenReconhecido = Token.OP_UNARIOS;
+        else 
+            this.tokenReconhecido = Token.OP;
     }
     
     public void s7(){
@@ -264,7 +274,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     }
     
     public void s13(int i, boolean flag, Vector aux){
-        if(i<2) flag = this.proxCaractereIs((String)aux.get(i));
+        if(i<3) flag = this.proxCaractereIs((String)aux.get(i));
         leProxCaractere();
         i++;
         if(!flag) s4();
@@ -272,7 +282,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             s13(i,flag, aux);
         }
         else{
-            if(i==2 && flag)
+            if(i==3 && flag)
                 this.tokenReconhecido = Token.FOR;
             else
                 s4();
@@ -280,7 +290,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     }
     
     public void s14(int i,boolean flag, Vector aux){
-        if(i<3) flag = this.proxCaractereIs((String)aux.get(i));
+        if(i<4) flag = this.proxCaractereIs((String)aux.get(i));
         leProxCaractere();
         i++;
         if(!flag) s4();
@@ -288,7 +298,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             s14(i,flag, aux);
         }
         else{
-            if(i==3 && flag)
+            if(i==4 && flag)
                 this.tokenReconhecido = Token.CASE;
             else
                 s4();
@@ -296,7 +306,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     }
 
     public void s15(int i,boolean flag, Vector aux){
-        if(i<5) flag = this.proxCaractereIs((String)aux.get(i));
+        if(i<6) flag = this.proxCaractereIs((String)aux.get(i));
         leProxCaractere();
         i++;
         if(!flag) s4();
@@ -304,7 +314,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             s15(i,flag, aux);
         }
         else{
-            if(i==5 && flag)
+            if(i==6 && flag)
                 this.tokenReconhecido = Token.SWITCH;
             else
                 s4();
@@ -312,15 +322,15 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     }
     
     public void s16(int i,boolean flag, Vector aux){
-        if(i<1) flag = this.proxCaractereIs((String)aux.get(i));
+        if(i<2) flag = this.proxCaractereIs((String)aux.get(i));
         leProxCaractere();
         i++;
         if(!flag) s4();
         if(this.proxCaractereIs(LETRAS)){
-            s15(i,flag, aux);
+            s16(i,flag, aux);
         }
         else{
-            if(i==1 && flag)
+            if(i==2 && flag)
                 this.tokenReconhecido = Token.IF;
             else
                 s4();
@@ -328,7 +338,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     }
     
     public void s17(int i,boolean flag, Vector aux){
-        if(i<1) flag = this.proxCaractereIs((String)aux.get(i));
+        if(i<2) flag = this.proxCaractereIs((String)aux.get(i));
         leProxCaractere();
         i++;
         if(!flag) s4();
@@ -336,7 +346,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             s17(i,flag, aux);
         }
         else{
-            if(i==1 && flag)
+            if(i==2 && flag)
                 this.tokenReconhecido = Token.DO;
             else
                 s4();
