@@ -35,11 +35,15 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
 		leProxCaractere();
 		s6();
 	}
-	else if(this.proxCaractereIs(VAZIOS)) {
-                linha++;
-		leProxCaractere();
-		s0();
-	}
+        else if(this.proxCaractereIs("\n")){
+            linha++;
+            leProxCaractere();
+            s0 ();
+        }
+        else if(this.proxCaractereIs(VAZIOS)) {
+                    leProxCaractere();
+                    s0();
+        }
         else if(this.proxCaractereIs(OP)) {
                 String aux="";
                 if(this.proxCaractereIs("+")) aux = "+";

@@ -16,6 +16,7 @@ public class AppInterfaceGrafica extends javax.swing.JFrame {
 
     public AppInterfaceGrafica() {
         initComponents();
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
