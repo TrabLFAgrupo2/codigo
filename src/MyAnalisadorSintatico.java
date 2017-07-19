@@ -139,11 +139,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                 exp();
                 if(proxTokenIs(Token.FP)){
                     leProxToken();
-<<<<<<< HEAD
                     blocoComp();
-=======
-                    bloco();
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                 }
                 else{
                     Token[] tokensEsperados = {Token.FP};
@@ -226,22 +222,14 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                     leProxToken();
                     if(proxTokenIs(Token.DOISPONTOS)){
                         leProxToken();
-<<<<<<< HEAD
                         blocoComp();
-=======
-                        bloco();
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                     }
                 }
             }else if(proxTokenIs(Token.IDENT)){
                 exp();
                 if(proxTokenIs(Token.DOISPONTOS)){
                 leProxToken();
-<<<<<<< HEAD
                 blocoComp();
-=======
-                bloco();
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                 }else{
                 Token[] tokensEsperados = {Token.DOISPONTOS};
                 throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);
@@ -285,11 +273,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                             atrib();
                             if(proxTokenIs(Token.FP)){
                                 leProxToken();
-<<<<<<< HEAD
                                 blocoComp();
-=======
-                                bloco();
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
                             }
                             else{
                                 Token[] tokensEsperados = {Token.FP};
@@ -335,7 +319,6 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
         }
     }
-<<<<<<< HEAD
     
     public void blocoComp(){
         if(proxTokenIs(Token.ACH)){
@@ -363,80 +346,5 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     /**
      *
      */
-    public void bloco(){
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
-        if(proxTokenIs(Token.ACH)){
-            leProxToken();
-            while(!proxTokenIs(Token.FCH)){
-                if(proxTokenIs(Token.FOR)){
-                    cmdFor();
-<<<<<<< HEAD
-                   // leProxToken();
-                }
-                if(proxTokenIs(Token.SWITCH)){
-                    cmdSwitch();
-                   //leProxToken();
-                }
-                if(proxTokenIs(Token.IF)){
-                    cmdIf();
-                    //leProxToken();
-                }
-                if(proxTokenIs(Token.WHILE)){
-                    cmdWhile();
-                    //leProxToken();
-=======
-                    leProxToken();
-                }
-                if(proxTokenIs(Token.SWITCH)){
-                    cmdSwitch();
-                   leProxToken();
-                }
-                if(proxTokenIs(Token.IF)){
-                    cmdIf();
-                    leProxToken();
-                }
-                if(proxTokenIs(Token.WHILE)){
-                    cmdWhile();
-                    leProxToken();
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
-                }
-                if(proxTokenIs(Token.DO)){
-                    //cmdDo();
-                    //leProxToken();
-                }if(proxTokenIs(Token.IDENT)){
-                    exp();
-                    //leProxToken();            
-<<<<<<< HEAD
-                }if(proxTokenIs(Token.FCH))
-                    leProxToken();
-                if(proxTokenIs(Token.EOF))
-=======
-                }if(proxTokenIs(Token.FCH)){
-                    leProxToken();
-                }else if(proxTokenIs(Token.EOF))
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
-                    break;
-            }
-        }else if(proxTokenIs(Token.FOR))
-             cmdFor();
-        else if(proxTokenIs(Token.SWITCH))
-            cmdSwitch();
-        else if(proxTokenIs(Token.IF))
-            cmdIf();
-        else if(proxTokenIs(Token.WHILE))
-            cmdWhile();
-        else if(proxTokenIs(Token.DO)){
-            //cmdDo();
-        }else if(proxTokenIs(Token.IDENT))
-            exp();
-        //else if(proxTokenIs(Token.FCH))
-         //   leProxToken();
-        //else if(proxTokenIs(Token.PT_VIRG))
-          //  leProxToken();
-<<<<<<< HEAD
-     }*/
-=======
-     }
->>>>>>> 84637805adbe7b6ca1e0b6f130c0aa6dc5212174
-    
+ 
 }
