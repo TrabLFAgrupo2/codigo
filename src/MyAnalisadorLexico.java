@@ -164,7 +164,7 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
 	//this.tokenReconhecido = Token.NUM;
         if(this.proxCaractere == '.')
                 i++;
-        if(i>1) throw new ErroLexico(this.proxCaractere,DIGITOS+LETRAS+VAZIOS+PT_VIRG);
+        if(i>1) throw new ErroLexico(this.proxCaractere,DIGITOS);
         else{
         this.tokenReconhecido = Token.NUM;
         if(this.proxCaractereIs(DIGITOS)) {
