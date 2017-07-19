@@ -1,7 +1,7 @@
 
 /**
- *
- * @author gabriel
+ * Grupo 2 (Gabriel Moura, Gabriel Camata, Raphael, Rafael aragao)
+ * @author Gabriel Moura, Gabriel Camata, Raphael, Rafael aragao
  */
 public class MyAnalisadorSintatico extends AnalisadorSintatico {
 	
@@ -22,7 +22,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *Funcao responsável pelo bloco de comando de outras funções
+     *Funcao responsável pelo bloco de comando de outras funções.
+     * bloco -> cmdWhile | cmdIf | cmdDoWhile | cmdSwitch | atrib | lambda
      */
     public void corpo() {
         if(proxTokenIs(Token.WHILE)){
@@ -50,7 +51,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
 	}
 
     /**
-     *Função responsável pelo atribuição de variaveis 
+     *Função responsável pelo atribuição de variaveis .
+     * 
      */
     public void comandoAtribuicao() {
         reconhece(Token.IDENT);
@@ -64,7 +66,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *Função responsavel por expressão arimeticas e logicas
+     *Função responsavel por expressão arimeticas e logicas.
+     * Exp -> num R1 | IDENT R1 | APexpFP R1
      */
     public void exp() {
         if(proxTokenIs(Token.NUM)){ 
@@ -92,7 +95,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *Funcao para tirar recursividade  a esquerda
+     *Funcao para tirar recursividade  a esquerda da "EXP".
+     * R1 -> OP exp | lambda
      */
     public void R1(){
         if(proxTokenIs(Token.OP)){
@@ -107,7 +111,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *Funcao do While
+     *Funcao do While.
+     * cmdDoWhile ->  DO ACH bloco FCH WHILE AP exp FP PT-VIRG 
      */
     public void cmdWhile(){
         if(proxTokenIs(Token.WHILE)){
@@ -132,7 +137,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
     
     /**
-     *Funcao do IF
+     *Funcao do IF.
+     * cmdIf -> IF AP exp FP blocoComp
      */
     public void cmdIf(){
         if(proxTokenIs(Token.IF)){
@@ -157,7 +163,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     * Funcao do Switch
+     * Funcao responsavel pela montagem do Switch.
+     * cmdSwhitch -> SWITCH AP IDENT FP ACH listaCase FCH
      */
     public void cmdSwitch(){
         if(proxTokenIs(Token.SWITCH)){
@@ -205,7 +212,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     * Funcao responsavel por montar a lista de cases do switch.
+     * listaCase -> case R3
      */
     public void listaCase(){
         Case();
@@ -213,7 +221,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     * Funcao responsavel pela montagem do case
+     * Funcao responsavel pela montagem do case;
+     * case -> CASE exp DOIS-PT bloco
      */
     public void Case(){
         if(proxTokenIs(Token.CASE)){
@@ -249,7 +258,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     * Funcao para retirar recursividade a esquerda
+     * Funcao para retirar recursividade a esquerda da lista de case.
+     * R3 -> listaCase | lambda
      */
     public void R3(){
         if(proxTokenIs(Token.CASE))
@@ -257,7 +267,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
         
     /**
-     * Funcao responsavel pela construção do for
+     * Funcao responsavel pela construção do for. 
+     * cmdFor -> FOR AP atrib PT-VIRG exp PT-VIRG atrib FP blocComp
      */
     public void cmdFor(){
         if(proxTokenIs(Token.FOR)){
@@ -301,7 +312,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     * Funcao que trata a atribuicao.
+     * atrib -> IDENT R2
      */
     public void atrib(){
         if(proxTokenIs(Token.IDENT)){
@@ -311,7 +323,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }    
 
     /**
-     * Funcao para retirar recursividade a esquerda
+     * Funcao para retirar recursividade a esquerda da atribuicao.
+     * R2 -> ATRIB exp | OP_UN
      */
     public void R2(){
         if(proxTokenIs(Token.ATRIB)){
@@ -323,7 +336,8 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         }
     }
     /**
-     * Criação de bloco de comandos
+     * Criação de bloco de comandos.
+     * blocoComp ->  ACH bloco FCH  | bloco
      */
     public void blocoComp(){
         if(proxTokenIs(Token.ACH)){
@@ -342,22 +356,26 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             bloco();
         
     }
+    /**
+     *Chama a Funcao com o bloco de comandos.
+     */
     public void bloco(){
         corpo();
     }
-   /* public void bloco(){
-=======
+
 
     /**
-     *
+     * Funcao onde e feita a analise sintatida do comando dowhile.
+     * cmdDoWhile -> <DO><ACH>bloco<FCH><WHILE><AP>exp<FP><PT-VIRG>
      */
  
      public void cmdDo(){
         if(proxTokenIs(Token.DO)){
             leProxToken();
             if(proxTokenIs(Token.ACH)){
-                blocoComp();
                 leProxToken();
+                bloco();
+                //leProxToken();
                 if(proxTokenIs(Token.FCH)){
                     leProxToken();
                     if (proxTokenIs(Token.WHILE)){
@@ -385,6 +403,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
                          Token[] tokensEsperados = {Token.WHILE};
                          throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
                     }
+                }else{
+                   Token[] tokensEsperados = {Token.FCH};
+                   throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
                 }
             }else{
                   Token[] tokensEsperados = {Token.ACH};
