@@ -37,6 +37,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
         else if(proxTokenIs(Token.IF)){
             cmdIf();
         }
+        else if(proxTokenIs(Token.DO)){
+            cmdDo();
+        }
         else if(proxTokenIs(Token.IDENT)) {
             comandoAtribuicao();
             reconhece(Token.PT_VIRG);
@@ -347,4 +350,44 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
      *
      */
  
+     public void cmdDo(){
+        if(proxTokenIs(Token.DO)){
+            leProxToken();
+            if(proxTokenIs(Token.ACH)){
+                blocoComp();
+                leProxToken();
+                if(proxTokenIs(Token.FCH)){
+                    leProxToken();
+                    if (proxTokenIs(Token.WHILE)){
+                        leProxToken();
+                        if(proxTokenIs(Token.AP)){
+                            leProxToken();
+                            exp();
+                            if(proxTokenIs(Token.FP)){
+                                leProxToken();
+                                if(proxTokenIs(Token.PT_VIRG))
+                                    leProxToken();
+                                else{
+                                Token[] tokensEsperados = {Token.PT_VIRG};
+                                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
+                                }   
+                            }else{
+                                Token[] tokensEsperados = {Token.FP};
+                                throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
+                            }
+                        }else{
+                              Token[] tokensEsperados = {Token.AP};
+                              throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
+                         }
+                    }else{
+                         Token[] tokensEsperados = {Token.WHILE};
+                         throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
+                    }
+                }
+            }else{
+                  Token[] tokensEsperados = {Token.ACH};
+                  throw new ErroSintatico(this.scanner.tokenReconhecido,tokensEsperados);            
+             }
+        }
+    }
 }
