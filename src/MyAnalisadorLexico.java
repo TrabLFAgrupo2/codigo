@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.Vector;
  
 public class MyAnalisadorLexico extends AnalisadorLexico {
+    int linha = 1;
     public MyAnalisadorLexico(String _nomeArquivoEntrada) {
 	super(_nomeArquivoEntrada);
     }
@@ -27,7 +28,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 aux.add("i");
                 aux.add("l");
                 aux.add("e");
-                //leProxCaractere();
                 s3(i,flag,aux);
         
         }
@@ -35,7 +35,8 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
 		leProxCaractere();
 		s6();
 	}
-	else if(this.proxCaractereIs(VAZIOS)) {  
+	else if(this.proxCaractereIs(VAZIOS)) {
+                linha++;
 		leProxCaractere();
 		s0();
 	}
@@ -89,7 +90,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 aux.add("f");
                 aux.add("o");
                 aux.add("r");
-                //leProxCaractere();
                 s13(i,flag,aux);
         }
         else if(this.proxCaractereIs(CASE)){
@@ -100,7 +100,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 aux.add("a");
                 aux.add("s");
                 aux.add("e");
-                //leProxCaractere();
                 s14(i,flag,aux);        
         }
         else if(this.proxCaractereIs(SWITCH)){
@@ -113,7 +112,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 aux.add("t");
                 aux.add("c");
                 aux.add("h");
-                //leProxCaractere();
                 s15(i,flag,aux);        
         }
         
@@ -123,7 +121,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 Vector aux = new Vector();
                 aux.add("i");
                 aux.add("f");
-                //leProxCaractere();
                 s16(i,flag,aux);
         }
         
@@ -133,7 +130,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
                 Vector aux = new Vector();
                 aux.add("d");
                 aux.add("o");
-                //leProxCaractere();
                 s17(i,flag,aux);
         }
         
@@ -157,14 +153,13 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
         }
         
 	else {
-            throw new ErroLexico(this.proxCaractere,DIGITOS+LETRAS+VAZIOS+PT_VIRG);
+            throw new ErroLexico(this.proxCaractere,DIGITOS+LETRAS+VAZIOS+PT_VIRG,linha);
 	}
     }
     public void s1(int i) {
-	//this.tokenReconhecido = Token.NUM;
         if(this.proxCaractere == '.')
                 i++;
-        if(i>1) throw new ErroLexico(this.proxCaractere,DIGITOS);
+        if(i>1) throw new ErroLexico(this.proxCaractere,DIGITOS,linha);
         else{
         this.tokenReconhecido = Token.NUM;
         if(this.proxCaractereIs(DIGITOS)) {
@@ -199,18 +194,10 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
         }
     }
     public void s5(String flag){
-        
-        /*if(this.proxCaractereIs("=")){
-            leProxCaractere();
-            s5(flag);
-        }*/
         if(this.proxCaractereIs("+") && flag=="+"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP_UNARIOS;
-        }/*else if (this.proxCaractereIs(DIGITOS+LETRAS) && flag=="+"){
-            leProxCaractere();
-            this.tokenReconhecido = Token.SINAL;
-        }*/
+        }
         else if(this.proxCaractereIs("-") && flag=="-"){
             leProxCaractere();
             this.tokenReconhecido = Token.OP_UNARIOS;
@@ -259,7 +246,6 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     public void s7(){
         this.tokenReconhecido = Token.DOISPONTOS;
         leProxCaractere();
-        //s7();
     }
     
     public void s8(){
