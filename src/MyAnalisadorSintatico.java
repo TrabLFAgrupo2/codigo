@@ -22,7 +22,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     *Funcao responsável pelo bloco de comando de outras funções
      */
     public void corpo() {
         if(proxTokenIs(Token.WHILE)){
@@ -50,7 +50,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
 	}
 
     /**
-     *
+     *Função responsável pelo atribuição de variaveis 
      */
     public void comandoAtribuicao() {
         reconhece(Token.IDENT);
@@ -64,7 +64,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     *Função responsavel por expressão arimeticas e logicas
      */
     public void exp() {
         if(proxTokenIs(Token.NUM)){ 
@@ -92,7 +92,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     *Funcao para tirar recursividade  a esquerda
      */
     public void R1(){
         if(proxTokenIs(Token.OP)){
@@ -107,7 +107,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     *Funcao do While
      */
     public void cmdWhile(){
         if(proxTokenIs(Token.WHILE)){
@@ -132,7 +132,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
     
     /**
-     *
+     *Funcao do IF
      */
     public void cmdIf(){
         if(proxTokenIs(Token.IF)){
@@ -157,7 +157,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     * Funcao do Switch
      */
     public void cmdSwitch(){
         if(proxTokenIs(Token.SWITCH)){
@@ -213,7 +213,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     * Funcao responsavel pela montagem do case
      */
     public void Case(){
         if(proxTokenIs(Token.CASE)){
@@ -249,7 +249,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
 
     /**
-     *
+     * Funcao para retirar recursividade a esquerda
      */
     public void R3(){
         if(proxTokenIs(Token.CASE))
@@ -257,7 +257,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }
         
     /**
-     *
+     * Funcao responsavel pela construção do for
      */
     public void cmdFor(){
         if(proxTokenIs(Token.FOR)){
@@ -311,7 +311,7 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
     }    
 
     /**
-     *
+     * Funcao para retirar recursividade a esquerda
      */
     public void R2(){
         if(proxTokenIs(Token.ATRIB)){
@@ -322,7 +322,9 @@ public class MyAnalisadorSintatico extends AnalisadorSintatico {
             leProxToken();
         }
     }
-    
+    /**
+     * Criação de bloco de comandos
+     */
     public void blocoComp(){
         if(proxTokenIs(Token.ACH)){
             leProxToken();
