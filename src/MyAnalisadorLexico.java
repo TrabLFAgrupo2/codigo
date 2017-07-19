@@ -7,8 +7,11 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
     }
     public void s0() {
 	if(this.proxCaractereIs(DIGITOS)) {//OK
+            int i = 0;
+            if(this.proxCaractere == '.')
+                i++;
             leProxCaractere();
-            s1();
+            s1(i);
 	}
 	else if(this.proxCaractere == IGUAL) {
             String aux = "=";
@@ -157,12 +160,18 @@ public class MyAnalisadorLexico extends AnalisadorLexico {
             throw new ErroLexico(this.proxCaractere,DIGITOS+LETRAS+VAZIOS+PT_VIRG);
 	}
     }
-    public void s1() {
-	this.tokenReconhecido = Token.NUM;
-	if(this.proxCaractereIs(DIGITOS)) {
+    public void s1(int i) {
+	//this.tokenReconhecido = Token.NUM;
+        if(this.proxCaractere == '.')
+                i++;
+        if(i>1) throw new ErroLexico(this.proxCaractere,DIGITOS+LETRAS+VAZIOS+PT_VIRG);
+        else{
+        this.tokenReconhecido = Token.NUM;
+        if(this.proxCaractereIs(DIGITOS)) {
             leProxCaractere();
-            s1();
+            s1(i);
 	}
+        }
     }
     public void s2(){
         this.tokenReconhecido = Token.ATRIB;
